@@ -16,12 +16,13 @@ class promotion extends Model
         'description',
         'date_debut',
         'date_fin',
-        'id_service'
+        'id_service',
+        'image',
     ];
 
     public function service()
     {
-        return $this->belongsTo(Service::class, 'id_service');
+        return $this->belongsTo(Service::class, 'id_service', 'id_service');
     }
 
      public function estActive()

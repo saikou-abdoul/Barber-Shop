@@ -500,7 +500,7 @@ public function destroyClient(Reservation $reservation)
     return redirect()->route('reservations.index')->with('success', 'Réservation supprimée avec succès.');
 }
 
-public function marquerCommeTerminee(\App\Models\Reservation $reservation)
+public function marquerCommeTerminee(Reservation $reservation)
 {
     // Vérifie que l'utilisateur est bien le coiffeur concerné
     if (Auth::id() !== $reservation->id_utilisateur_coiffeur || !Auth::user()->isCoiffeur()) {
@@ -514,6 +514,26 @@ public function marquerCommeTerminee(\App\Models\Reservation $reservation)
     }
 
     return back()->with('success', 'Le service est marqué comme terminé. 10 points fidélité ajoutés au client.');
+}
+
+public function destroyByCoiffeur(Reservation $reservation)
+{
+    $user = Auth::user();
+
+    if ($user->isCoiffeur() && $reservation->id_utilisateur_coiffeur === $user->id_utilisateur) {
+        
+        // ❌ Bloquer la suppression si le statut est "en attente"
+        if ($reservation->statut === 'en attente') {
+            return redirect()->back()->with('error', 'Vous ne pouvez pas supprimer une réservation en attente.');
+        }
+
+        // ✅ Autoriser pour les autres statuts
+        $reservation->delete();
+
+        return redirect()->route('reservations.index')->with('success', 'Réservation supprimée avec succès.');
+    }
+
+    abort(403, 'Action non autorisée.');
 }
 
 

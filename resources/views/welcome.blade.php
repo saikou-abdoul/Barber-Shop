@@ -244,7 +244,7 @@
                 'gallery1.png', 
                 'gallery2.png', 
                 'gallery3.png', 
-                'gallery4.png'
+                'image.png'
             ] as $index => $img)
                 <div class="col-lg-{{ $index % 2 == 0 ? 4 : 8 }} col-md-6 col-sm-12">
                     <div class="gallery-item position-relative overflow-hidden rounded-4 shadow-sm">
@@ -282,9 +282,9 @@
 <section class="bg-white py-5">
     <div class="container" >
         <h3 class="mb-4 text-center">❤️ Ce que disent nos clients</h3>
-        @if (isset($moyenne))
+     {{--    @if (isset($moyenne))
         <p class="text-center text-muted">Note moyenne : <strong>{{ number_format($moyenne, 1) }}/5</strong></p>
-        @endif
+        @endif--}} 
         <div class="row">
             @foreach ($avisRecents as $item)
                 <div class="col-md-4 mb-4">

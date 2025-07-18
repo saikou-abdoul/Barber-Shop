@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{ route('promotions.update', $promotion->id_promotion) }}" method="POST">
+    <form action="{{ route('promotions.update', $promotion->id_promotion) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -27,6 +27,20 @@
             <label for="description" class="form-label">Description</label>
             <textarea name="description" id="description" class="form-control">{{ old('description', $promotion->description) }}</textarea>
         </div>
+
+        <div class="mb-3">
+          <label for="image" class="form-label">Image de la promotion</label>
+
+           @if ($promotion->image)
+            <div class="mb-2">
+            <img src="{{ asset('storage/' . $promotion->image) }}" alt="Image actuelle" style="max-width: 150px;">
+          </div>
+           @endif
+
+          <input type="file" name="image" id="image" class="form-control">
+          <small class="form-text text-muted">Laissez vide si vous ne souhaitez pas changer l’image.</small>
+          </div>
+
 
         <div class="mb-3">
             <label for="date_debut" class="form-label">Date de début</label>

@@ -27,6 +27,13 @@
             <textarea name="description" id="description" class="form-control">{{ old('description') }}</textarea>
         </div>
 
+        
+        <div class="mb-3">
+           <label for="image" class="form-label">Image de la promotion</label>
+           <input type="file" name="image" id="image" class="form-control">
+        </div>
+
+
         <div class="mb-3">
             <label for="date_debut" class="form-label">Date de début</label>
             <input type="date" name="date_debut" id="date_debut" class="form-control" value="{{ old('date_debut') }}" required>

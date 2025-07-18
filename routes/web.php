@@ -231,3 +231,7 @@ Route::middleware(['auth'])->group(function () {
 // route pour le message de poit de fideliter
 Route::patch('/reservations/{id}/terminer', [ReservationController::class, 'marquerCommeTerminee'])
     ->name('reservations.terminer');
+// route de suppression coiffeur
+    Route::delete('/reservations/{reservation}/coiffeur', [ReservationController::class, 'destroyByCoiffeur'])
+    ->middleware(['auth'])
+    ->name('reservations.destroy.coiffeur');

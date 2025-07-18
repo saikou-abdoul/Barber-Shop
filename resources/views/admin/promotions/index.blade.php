@@ -16,6 +16,7 @@
                 <th>ID</th>
                 <th>Titre</th>
                 <th>Description</th>
+                 <th>Image</th>
                 <th>Date début</th>
                 <th>Date fin</th>
                 <th>Service</th>
@@ -28,6 +29,16 @@
                     <td>{{ $promotion->id_promotion }}</td>
                     <td>{{ $promotion->titre }}</td>
                     <td>{{ $promotion->description }}</td>
+                     <td>
+                       @if($promotion->service && $promotion->service->image)
+    <img src="{{ asset('images/services/' . $promotion->service->image) }}"
+         alt="Image du service"
+         class="img-fluid rounded"
+         style="height: 100px; object-fit: cover;">
+@else
+    <span class="text-muted">Aucune image</span>
+@endif    
+                     </td>
                     <td>{{ $promotion->date_debut }}</td>
                     <td>{{ $promotion->date_fin }}</td>
                     <td>{{ $promotion->service->nom_service ?? 'N/A' }}</td>

@@ -26,7 +26,7 @@
             </h3>
         </div>
 
-        <p class="text-muted fs-5">Ravi de vous revoir sur votre espace</p>
+        <p class="text-muted fs-5">Tableau de bord</p>
 
     </div>
 </div>

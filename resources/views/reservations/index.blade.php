@@ -91,6 +91,23 @@
                                     </button>
                                 </form>
                             @endif
+                               @php
+    $coiffeurPeutSupprimer = Auth::user()->isCoiffeur() 
+        && $reservation->id_utilisateur_coiffeur === Auth::id()
+        && $reservation->statut !== 'en attente';
+@endphp
+
+@if($coiffeurPeutSupprimer)
+    <form action="{{ route('reservations.destroy.coiffeur', $reservation) }}" method="POST"
+          onsubmit="return confirm('Supprimer cette réservation ?')">
+        @csrf
+        @method('DELETE')
+        <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+            <i class="bi bi-trash"></i>
+        </button>
+    </form>
+@endif
+
                         </div>
                     </td>
                 </tr>

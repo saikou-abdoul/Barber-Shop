@@ -33,4 +33,9 @@ class Service extends Model
     {
         return $query->where('actif', true);
     }
+    public function promotions()
+{
+    return $this->hasMany(Promotion::class, 'id_service', 'id_service');
+}
+
 }
